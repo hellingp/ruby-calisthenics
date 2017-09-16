@@ -27,21 +27,27 @@ module FunWithStrings
     # Create an array for the results
     results = Array.new
     # Create a hash to count words
-    counts = Hash(Array.new)
+    counts = Hash.new(0)
     # Split string
     words = self.split(' ')
     words.each do |word|
       # Create an array of sorted chars ignoring case
       scramble = word.downcase.chars.sort
       # Add a word to scramble in the hash
-      counts[scramble.push(word)]
+      counts[scramble] += 1
     end
-    return counts
+    if self == ''
+      counts = []
+    else
+      counts
+    end
   end
 end
 
-# make all the above functions available as instance methods on Strings:
-
 class String
   include FunWithStrings
+end
+
+class Main
+  puts "dog god".anagram_groups
 end
